@@ -1,0 +1,14 @@
+{
+    "name": "palmyr/commonutils",
+    "description": "Usefull classes",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Palmyr\\Commonutils\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": "~8.0"
+    }
+}
