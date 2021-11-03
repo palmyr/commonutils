@@ -2,7 +2,14 @@
 
 namespace Palmyr\CommonUtils\Collection;
 
-class Collection
+interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Serializable
 {
 
+    public function toArray(): array;
+
+    public function get($key);
+
+    public function set($key, $value): Collection;
+
+    public function remove($key);
 }
