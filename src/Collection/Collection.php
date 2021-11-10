@@ -12,4 +12,6 @@ interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Seri
     public function set($key, $value): Collection;
 
     public function remove($key);
+
+    public function add(array $values): Collection;
 }

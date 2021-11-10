@@ -27,6 +27,8 @@ class ArrayCollection implements Collection
     public function offsetSet($offset, $value): Collection
     {
         $this->set($offset, $value);
+
+        return $this;
     }
 
     public function offsetUnset($offset)
@@ -76,6 +78,13 @@ class ArrayCollection implements Collection
         }
 
         return null;
+    }
+
+    public function add(array $values): Collection
+    {
+        $this->collection = array_merge($this->collection, $values);
+
+        return $this;
     }
 
     public function toArray(): array
