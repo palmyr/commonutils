@@ -9,7 +9,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Palmyr\\Commonutils\\": "tests/"
+            "Tests\\Palmyr\\CommonUtils\\": "tests/"
         }
     },
     "minimum-stability": "stable",
