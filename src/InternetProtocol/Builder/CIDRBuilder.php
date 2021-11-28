@@ -32,6 +32,7 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
         list($ipv4, $range) = $this->parse($cidr);
 
         $this->validateIPV4($ipv4);
+        $this->validateRange($range);
 
         return new CIDR(
             new IPV4($ipv4),
@@ -59,6 +60,19 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
             throw new ValidationException('The given value is not a valid CIDR');
         }
 
+        $pieces[1] = (int)$pieces[1];
+
         return $pieces;
+    }
+
+    /**
+     * @param int $range
+     * @throws ValidationException
+     */
+    protected function validateRange(int $range): void
+    {
+        if ( $range < self::RANGE_MINIMUM || $range > self::RANGE_MAXIMUM ) {
+            throw new ValidationException('Range is outside of allowed values');
+        }
     }
 }

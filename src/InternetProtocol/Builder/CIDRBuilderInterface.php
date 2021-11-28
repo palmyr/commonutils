@@ -9,6 +9,10 @@ use Palmyr\CommonUtils\InternetProtocol\Netmask\NetmaskInterface;
 interface CIDRBuilderInterface
 {
 
+    public const RANGE_MINIMUM = 0;
+
+    public const RANGE_MAXIMUM = 32;
+
     /**
      * @param string $cidr
      * @return CIDRInterface

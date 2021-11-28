@@ -35,12 +35,23 @@ class CIDRTest extends TestCase
     /**
      * @covers CIDRBuilder::build
      */
-    public function testOutOfRange(): void
+    public function testOutOfIPV4(): void
     {
         $this->expectException(ValidationException::class);
         $this->expectErrorMessage('he provided ipv4 is out of range');
 
         $this->builder->build('256.255.255.255/0');
+    }
+
+    /**
+     * @covers CIDRBuilder::build
+     */
+    public function testOutOfRange(): void
+    {
+        $this->expectException(ValidationException::class);
+        $this->expectErrorMessage('Range is outside of allowed values');
+
+        $this->builder->build('255.255.255.255/33');
     }
 
     /**
