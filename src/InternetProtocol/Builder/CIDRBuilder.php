@@ -5,11 +5,12 @@ namespace Palmyr\CommonUtils\InternetProtocol\Builder;
 use Palmyr\CommonUtils\InternetProtocol\CIDR\CIDR;
 use Palmyr\CommonUtils\InternetProtocol\CIDR\CIDRInterface;
 use Palmyr\CommonUtils\InternetProtocol\Converter\SubnetConverterInterface;
+use Palmyr\CommonUtils\InternetProtocol\Exception\ValidationException;
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4;
 use Palmyr\CommonUtils\InternetProtocol\Netmask\NetmaskInterface;
 use Palmyr\CommonUtils\InternetProtocol\Range\Range;
 
-class CIDRBuilder implements CIDRBuilderInterface
+class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
 {
 
     protected SubnetConverterInterface $subnetConverter;
@@ -21,9 +22,16 @@ class CIDRBuilder implements CIDRBuilderInterface
         $this->subnetConverter = $subnetConverter;
     }
 
+    /**
+     * @param string $cidr
+     * @return CIDRInterface
+     * @throws ValidationException
+     */
     public function build(string $cidr): CIDRInterface
     {
         list($ipv4, $range) = $this->parse($cidr);
+
+        $this->validateIPV4($ipv4);
 
         return new CIDR(
             new IPV4($ipv4),
@@ -33,15 +41,22 @@ class CIDRBuilder implements CIDRBuilderInterface
 
     public function buildFromNetmask(NetmaskInterface $netmask): CIDRInterface
     {
-        return $this->subnetConverter->NetmaskToCIDR($netmask);
+        $range = $this->subnetConverter->MaskToRange($netmask->getMask());
+
+        return new CIDR($netmask->getIPV4(), $range);
     }
 
+    /**
+     * @param string $value
+     * @return array
+     * @throws ValidationException
+     */
     protected function parse(string $value): array
     {
         $pieces = explode(CIDRInterface::CIDR_SEPARATOR, $value);
 
         if ( count($pieces) !== 2) {
-            throw new \InvalidArgumentException('The given value is not a valid CIDR');
+            throw new ValidationException('The given value is not a valid CIDR');
         }
 
         return $pieces;

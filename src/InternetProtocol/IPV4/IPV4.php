@@ -7,4 +7,8 @@ use Palmyr\CommonUtils\String\StringAble;
 class IPV4 extends StringAble implements IPV4Interface
 {
 
+    public function __construct(string $value)
+    {
+        parent::__construct($value);
+    }
 }

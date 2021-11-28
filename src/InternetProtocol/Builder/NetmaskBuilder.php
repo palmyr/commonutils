@@ -31,6 +31,8 @@ class NetmaskBuilder implements NetmaskBuilderInterface
 
     public function buildFromCIDR(CIDRInterface $CIDR): NetmaskInterface
     {
-        return $this->subnetConverter->CIDRToNetmask($CIDR);
+        $mask = $this->subnetConverter->RangeToMask($CIDR->getRange());
+
+        return new Netmask($CIDR->getIPV4(), $mask);
     }
 }
