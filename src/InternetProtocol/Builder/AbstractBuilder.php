@@ -3,11 +3,10 @@
 namespace Palmyr\CommonUtils\InternetProtocol\Builder;
 
 use Palmyr\CommonUtils\InternetProtocol\Exception\ValidationException;
+use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
 
 abstract class AbstractBuilder
 {
-
-    public const IPV4_PATTERN = '^(\d+)\.(\d+)\.(\d+)\.(\d+)$';
 
     /**
      * @param string $ipv4
@@ -15,7 +14,7 @@ abstract class AbstractBuilder
      */
     protected function validateIPV4(string $ipv4): void
     {
-        if ( preg_match('/'.self::IPV4_PATTERN.'/', $ipv4, $matches) ) {
+        if ( preg_match('/'.IPV4Interface::IPV4_PATTERN.'/', $ipv4, $matches) ) {
             reset($matches);
             foreach ( $matches as $piece ) {
                 $piece = (int)$piece;
