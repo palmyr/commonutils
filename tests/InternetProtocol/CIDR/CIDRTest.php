@@ -15,6 +15,7 @@ class CIDRTest extends TestCase
 
     /**
      * @dataProvider CIDRDateProvider
+     * @covers CIDRBuilder::build
      */
     public function testCIDR(string $value): void
     {
@@ -29,6 +30,9 @@ class CIDRTest extends TestCase
     {
         return [
             ['192.168.1.0/24'],
+            ['172.12.0.0/24'],
+            ['192.168.1.255/32'],
+            ['0.0.0.0/0'],
         ];
     }
 
