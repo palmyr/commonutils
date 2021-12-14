@@ -2,6 +2,9 @@
 
 namespace Palmyr\CommonUtils\Collection;
 
+use Palmyr\CommonUtils\String\StringInterface;
+use Palmyr\CommonUtils\String\StringObject;
+
 class ArrayCollection implements Collection
 {
 
@@ -85,6 +88,11 @@ class ArrayCollection implements Collection
         $this->collection = array_merge($this->collection, $values);
 
         return $this;
+    }
+
+    public function implode(string $separator): StringInterface
+    {
+        return new StringObject(implode($separator, $this->collection));
     }
 
     public function toArray(): array

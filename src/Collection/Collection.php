@@ -2,6 +2,8 @@
 
 namespace Palmyr\CommonUtils\Collection;
 
+use Palmyr\CommonUtils\String\StringInterface;
+
 interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Serializable
 {
 
@@ -14,4 +16,6 @@ interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Seri
     public function remove($key);
 
     public function add(array $values): Collection;
+
+    public function implode(string $separator): StringInterface;
 }
