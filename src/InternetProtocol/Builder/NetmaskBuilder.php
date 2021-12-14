@@ -23,13 +23,14 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
     }
 
     /**
-     * @param string $ipv4
-     * @param string $mask
+     * @param string $netmask
      * @return NetmaskInterface
      * @throws ValidationException
      */
-    public function build(string $ipv4, string $mask): NetmaskInterface
+    public function build(string $netmask): NetmaskInterface
     {
+
+        list($ipv4, $mask) = $this->parse($netmask);
 
         $this->validateIPV4($ipv4);
         $this->validateMask($mask);
@@ -54,5 +55,21 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
     protected function validateMask(string $mask): void
     {
         $this->validateIPV4($mask);
+    }
+
+    /**
+     * @param string $netmask
+     * @return array
+     * @throws ValidationException
+     */
+    protected function parse(string $netmask): array
+    {
+        $pieces = explode(self::NETMASK_SEPARATOR, $netmask);
+
+        if ( count($pieces) === 2 ) {
+            return $pieces;
+        }
+
+        throw new ValidationException('The provided netmask is not valid');
     }
 }

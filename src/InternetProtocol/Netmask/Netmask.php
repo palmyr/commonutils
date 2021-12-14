@@ -2,6 +2,7 @@
 
 namespace Palmyr\CommonUtils\InternetProtocol\Netmask;
 
+use Palmyr\CommonUtils\InternetProtocol\Builder\NetmaskBuilderInterface;
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
 use Palmyr\Commonutils\InternetProtocol\Mask\MaskInterface;
 use Palmyr\CommonUtils\String\StringAble;
@@ -24,7 +25,7 @@ class Netmask extends StringAble implements NetmaskInterface
 
     public function getString(): string
     {
-        return $this->IPV4 . ' ' . $this->mask;
+        return $this->IPV4 . NetmaskBuilderInterface::NETMASK_SEPARATOR . $this->mask;
     }
 
     /**

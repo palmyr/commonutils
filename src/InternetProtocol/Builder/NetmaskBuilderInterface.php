@@ -9,13 +9,14 @@ use Palmyr\CommonUtils\InternetProtocol\Netmask\NetmaskInterface;
 interface NetmaskBuilderInterface
 {
 
+    public const NETMASK_SEPARATOR = ' ';
+
     /**
-     * @param string $ipv4
-     * @param string $mask
+     * @param string $netmask
      * @return NetmaskInterface
      * @throws ValidationException
      */
-    public function build(string $ipv4, string $mask): NetmaskInterface;
+    public function build(string $netmask): NetmaskInterface;
 
     public function buildFromCIDR(CIDRInterface $CIDR): NetmaskInterface;
 }
