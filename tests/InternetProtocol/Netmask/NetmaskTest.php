@@ -11,7 +11,7 @@ class NetmaskTest extends TestCase
 
     protected NetmaskBuilder $builder;
 
-    
+
 
     protected function setUp(): void
     {
