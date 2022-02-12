@@ -12,9 +12,19 @@ class StringObject extends StringAble implements StringInterface
 {
     use CreateClassTrait;
 
+    /**
+     * @param string $separator
+     * @param int $limit
+     * @return Collection<string>
+     */
     public function explode(string $separator, int $limit = PHP_INT_MAX): Collection
     {
-        $pieces = explode($separator, $this->value, $limit);
+        if (empty($separator)) {
+            $pieces = [$this->value];
+        } else {
+            $pieces = explode($separator, $this->value, $limit);
+        }
+
 
         return static::createFromArray($pieces);
     }
