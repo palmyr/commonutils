@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Palmyr\CommonUtils\String;
 
@@ -7,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class StringObjectTest extends TestCase
 {
-
     public function testExplode(): void
     {
         $string = new StringObject('This is a test string');

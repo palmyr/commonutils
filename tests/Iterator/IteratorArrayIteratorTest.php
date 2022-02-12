@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Palmyr\CommonUtils\Iterator;
 
@@ -7,10 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 class IteratorArrayIteratorTest extends TestCase
 {
-
     public function testMultipleIterators(): void
     {
-
         $values = [
             'value1',
             'value2',
@@ -45,7 +45,7 @@ class IteratorArrayIteratorTest extends TestCase
             $iterator3,
         ]);
 
-        foreach ( $iteratorMultiple as $key => $value ) {
+        foreach ($iteratorMultiple as $key => $value) {
             $this->assertEquals($values[$key], $value);
         }
     }

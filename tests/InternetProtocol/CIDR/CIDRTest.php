@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Palmyr\Commonutils\InternetProtocol\CIDR;
 
@@ -10,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class CIDRTest extends TestCase
 {
-
     protected CIDRBuilderInterface $builder;
 
     /**
@@ -19,11 +20,9 @@ class CIDRTest extends TestCase
      */
     public function testCIDR(string $value): void
     {
-
         $cidr = $this->builder->build($value);
 
         $this->assertEquals($value, $cidr->getString());
-
     }
 
     public function CIDRDateProvider(): array

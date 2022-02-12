@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Builder;
 
@@ -8,7 +10,6 @@ use Palmyr\CommonUtils\InternetProtocol\Netmask\NetmaskInterface;
 
 interface CIDRBuilderInterface
 {
-
     public const RANGE_MINIMUM = 0;
 
     public const RANGE_MAXIMUM = 32;

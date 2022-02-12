@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Palmyr\CommonUtils\InternetProtocol\Converter;
 
@@ -10,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class SubnetConverterTest extends TestCase
 {
-
     protected SubnetConverterInterface $subnetConverter;
 
     /**
@@ -46,7 +47,7 @@ class SubnetConverterTest extends TestCase
     {
         $data = $this->baseDataProvider();
 
-        $data = array_map(function (array $item): array{
+        $data = array_map(function (array $item): array {
             return array_reverse($item);
         }, $data);
 

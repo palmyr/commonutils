@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\Commonutils\InternetProtocol\CIDR;
 
@@ -8,7 +10,6 @@ use Palmyr\CommonUtils\String\StringAble;
 
 class CIDR extends StringAble implements CIDRInterface
 {
-
     protected IPV4 $IPV4;
 
     protected Range $range;
@@ -16,8 +17,7 @@ class CIDR extends StringAble implements CIDRInterface
     public function __construct(
         IPV4 $IPV4,
         Range $range
-    )
-    {
+    ) {
         parent::__construct('');
         $this->IPV4 = $IPV4;
         $this->range = $range;
@@ -59,5 +59,4 @@ class CIDR extends StringAble implements CIDRInterface
     {
         $this->range = $range;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\Classes;
 
@@ -7,21 +9,19 @@ use Palmyr\CommonUtils\Collection\Collection;
 
 trait CreateClassTrait
 {
-
     /**
      * @return object
      */
-    static public function create(): object
+    public static function create(): object
     {
         $params = func_get_args();
         return new static(...$params);
     }
 
-    static public function createFromArray(array $items): Collection
+    public static function createFromArray(array $items): Collection
     {
         $items = array_map(static::class . '::create', $items);
 
         return new ArrayCollection($items);
     }
-
 }

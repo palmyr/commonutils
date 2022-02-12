@@ -1,18 +1,18 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\IpInfo\Service;
 
 class IpInfoService implements IpInfoServiceInterface
 {
-
     protected string $uri;
 
     protected array $rawIpInfo;
 
     public function __construct(
         string $uri = self::DEFAULT_URI
-    )
-    {
+    ) {
         $this->uri = $uri;
     }
 
@@ -25,7 +25,7 @@ class IpInfoService implements IpInfoServiceInterface
     {
         $data = $this->getRawIpInfo();
 
-        if (array_key_exists($key, $data) ) {
+        if (array_key_exists($key, $data)) {
             return $data[$key];
         }
 
@@ -34,7 +34,7 @@ class IpInfoService implements IpInfoServiceInterface
 
     protected function getRawIpInfo(): array
     {
-        if ( !isset($this->rawIpInfo) ) {
+        if (!isset($this->rawIpInfo)) {
             $this->rawIpInfo = $this->loadIpInfo();
         }
 
@@ -43,7 +43,7 @@ class IpInfoService implements IpInfoServiceInterface
 
     protected function loadIpInfo(): array
     {
-        if ( $json = @file_get_contents($this->uri) ) {
+        if ($json = @file_get_contents($this->uri)) {
             return json_decode($json, true);
         }
 

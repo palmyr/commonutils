@@ -1,16 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\String;
 
 class StringAble implements StringAbleInterface
 {
-
     protected string $value;
 
     public function __construct(
         string $value
-    )
-    {
+    ) {
         $this->value = $value;
     }
 

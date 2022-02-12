@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Netmask;
 
@@ -16,8 +18,7 @@ class Netmask extends StringAble implements NetmaskInterface
     public function __construct(
         IPV4Interface $IPV4,
         MaskInterface $mask,
-    )
-    {
+    ) {
         $this->IPV4 = $IPV4;
         $this->mask = $mask;
         parent::__construct('');
@@ -59,5 +60,4 @@ class Netmask extends StringAble implements NetmaskInterface
     {
         $this->mask = $mask;
     }
-
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Converter;
 
@@ -9,17 +11,13 @@ use Palmyr\CommonUtils\InternetProtocol\Range\RangeInterface;
 
 class SubnetConverter implements SubnetConverterInterface
 {
-
     public function RangeToMask(RangeInterface $range): MaskInterface
     {
-
         $pieces = str_split(str_pad(str_pad('', (int)$range->getString(), '1'), 32, '0'), 8);
 
         $pieces = array_map('bindec', $pieces);
 
         return new Mask(join('.', $pieces));
-
-
     }
 
     public function MaskToRange(MaskInterface $mask): RangeInterface

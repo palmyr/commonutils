@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Builder;
 
@@ -8,7 +10,6 @@ use Palmyr\CommonUtils\InternetProtocol\Netmask\NetmaskInterface;
 
 interface NetmaskBuilderInterface
 {
-
     public const NETMASK_SEPARATOR = ' ';
 
     /**

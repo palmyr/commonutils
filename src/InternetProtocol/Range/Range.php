@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Range;
 
@@ -8,8 +10,7 @@ class Range implements RangeInterface
 
     public function __construct(
         int $value
-    )
-    {
+    ) {
         $this->value = $value;
     }
 

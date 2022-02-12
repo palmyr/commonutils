@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\CIDR;
 
@@ -8,7 +10,6 @@ use Palmyr\CommonUtils\String\StringAbleInterface;
 
 interface CIDRInterface extends StringAbleInterface
 {
-
     public const CIDR_SEPARATOR = '/';
 
     /**

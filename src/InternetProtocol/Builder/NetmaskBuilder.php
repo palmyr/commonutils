@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Builder;
 
@@ -12,13 +14,11 @@ use Palmyr\CommonUtils\InternetProtocol\Exception\ValidationException;
 
 class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
 {
-
     protected SubnetConverterInterface $subnetConverter;
 
     public function __construct(
         SubnetConverterInterface $subnetConverter
-    )
-    {
+    ) {
         $this->subnetConverter = $subnetConverter;
     }
 
@@ -29,7 +29,6 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
      */
     public function build(string $netmask): NetmaskInterface
     {
-
         list($ipv4, $mask) = $this->parse($netmask);
 
         $this->validateIPV4($ipv4);
@@ -66,7 +65,7 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
     {
         $pieces = explode(self::NETMASK_SEPARATOR, $netmask);
 
-        if ( count($pieces) === 2 ) {
+        if (count($pieces) === 2) {
             return $pieces;
         }
 

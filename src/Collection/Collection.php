@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\Collection;
 
@@ -6,7 +8,6 @@ use Palmyr\CommonUtils\String\StringInterface;
 
 interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Serializable
 {
-
     public function toArray(): array;
 
     public function get($key);

@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\Iterator;
 
 class IteratorArrayIterator implements \Iterator
 {
-
     /**
      * @var \Traversable[]
      */
@@ -16,8 +17,7 @@ class IteratorArrayIterator implements \Iterator
 
     public function __construct(
         array $iteratorCollection
-    )
-    {
+    ) {
         $this->iteratorCollection = $iteratorCollection;
     }
 
@@ -29,7 +29,7 @@ class IteratorArrayIterator implements \Iterator
     public function next()
     {
         $this->currentIterator()->next();
-        if ( !$this->currentIterator()->valid() ) {
+        if (!$this->currentIterator()->valid()) {
             $this->position++;
         }
         $this->key++;
@@ -49,14 +49,14 @@ class IteratorArrayIterator implements \Iterator
     {
         $this->position = 0;
         $this->key = 0;
-        foreach ( $this->iteratorCollection as $iterator ) {
+        foreach ($this->iteratorCollection as $iterator) {
             reset($iterator);
         }
     }
 
     protected function currentIterator(): \Iterator
     {
-        if ( $this->currentPositionValid() ) {
+        if ($this->currentPositionValid()) {
             return $this->iteratorCollection[$this->position];
         }
 
@@ -67,5 +67,4 @@ class IteratorArrayIterator implements \Iterator
     {
         return isset($this->iteratorCollection[$this->position]) &&  $this->iteratorCollection[$this->position] instanceof \Iterator;
     }
-
 }

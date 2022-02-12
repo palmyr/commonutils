@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Builder;
 
@@ -12,13 +14,11 @@ use Palmyr\CommonUtils\InternetProtocol\Range\Range;
 
 class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
 {
-
     protected SubnetConverterInterface $subnetConverter;
 
     public function __construct(
         SubnetConverterInterface $subnetConverter
-    )
-    {
+    ) {
         $this->subnetConverter = $subnetConverter;
     }
 
@@ -56,7 +56,7 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
     {
         $pieces = explode(CIDRInterface::CIDR_SEPARATOR, $value);
 
-        if ( count($pieces) !== 2) {
+        if (count($pieces) !== 2) {
             throw new ValidationException('The given value is not a valid CIDR');
         }
 
@@ -71,7 +71,7 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
      */
     protected function validateRange(int $range): void
     {
-        if ( $range < self::RANGE_MINIMUM || $range > self::RANGE_MAXIMUM ) {
+        if ($range < self::RANGE_MINIMUM || $range > self::RANGE_MAXIMUM) {
             throw new ValidationException('Range is outside of allowed values');
         }
     }

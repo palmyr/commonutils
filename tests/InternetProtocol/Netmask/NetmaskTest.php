@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Palmyr\CommonUtils\InternetProtocol\Netmask;
 
@@ -8,7 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class NetmaskTest extends TestCase
 {
-
     protected NetmaskBuilder $builder;
 
 

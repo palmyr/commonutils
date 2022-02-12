@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\Collection;
 
@@ -7,13 +9,11 @@ use Palmyr\CommonUtils\String\StringObject;
 
 class ArrayCollection implements Collection
 {
-
     protected array $collection;
 
     public function __construct(
         array $collection = []
-    )
-    {
+    ) {
         $this->collection = $collection;
     }
 
@@ -73,7 +73,7 @@ class ArrayCollection implements Collection
 
     public function remove($key)
     {
-        if ( $this->offsetExists($key) ) {
+        if ($this->offsetExists($key)) {
             $value = $this->collection[$key];
             unset($this->collection[$key]);
 
