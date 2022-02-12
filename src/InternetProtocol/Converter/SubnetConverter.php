@@ -11,7 +11,7 @@ use Palmyr\CommonUtils\InternetProtocol\Range\RangeInterface;
 
 class SubnetConverter implements SubnetConverterInterface
 {
-    public function RangeToMask(RangeInterface $range): MaskInterface
+    public function rangeToMask(RangeInterface $range): MaskInterface
     {
         $pieces = str_split(str_pad(str_pad('', (int)$range->getString(), '1'), 32, '0'), 8);
 
@@ -20,7 +20,7 @@ class SubnetConverter implements SubnetConverterInterface
         return new Mask(join('.', $pieces));
     }
 
-    public function MaskToRange(MaskInterface $mask): RangeInterface
+    public function maskToRange(MaskInterface $mask): RangeInterface
     {
         $pieces = explode('.', $mask->getString());
 

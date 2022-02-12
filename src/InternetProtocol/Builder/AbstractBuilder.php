@@ -15,7 +15,7 @@ abstract class AbstractBuilder
      */
     protected function validateIPV4(string $ipv4): void
     {
-        if (preg_match('/'.IPV4Interface::IPV4_PATTERN.'/', $ipv4, $matches)) {
+        if (preg_match('/' . IPV4Interface::IPV4_PATTERN . '/', $ipv4, $matches)) {
             reset($matches);
             foreach ($matches as $piece) {
                 $piece = (int)$piece;

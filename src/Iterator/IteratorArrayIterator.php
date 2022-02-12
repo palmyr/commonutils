@@ -65,6 +65,7 @@ class IteratorArrayIterator implements \Iterator
 
     protected function currentPositionValid(): bool
     {
-        return isset($this->iteratorCollection[$this->position]) &&  $this->iteratorCollection[$this->position] instanceof \Iterator;
+        return isset($this->iteratorCollection[$this->position])
+            && $this->iteratorCollection[$this->position] instanceof \Iterator;
     }
 }

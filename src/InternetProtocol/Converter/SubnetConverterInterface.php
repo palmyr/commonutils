@@ -9,7 +9,7 @@ use Palmyr\CommonUtils\InternetProtocol\Range\RangeInterface;
 
 interface SubnetConverterInterface
 {
-    public function RangeToMask(RangeInterface $range): MaskInterface;
+    public function rangeToMask(RangeInterface $range): MaskInterface;
 
-    public function MaskToRange(MaskInterface $mask): RangeInterface;
+    public function maskToRange(MaskInterface $mask): RangeInterface;
 }
