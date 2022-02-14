@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\Iterator;
 
+/**
+ * @implements \Iterator<int,mixed>
+ */
 class IteratorArrayIterator implements \Iterator
 {
     /**
-     * @var \Traversable[]
+     * @var array<\Iterator<mixed>>
      */
     protected array $iteratorCollection;
 
@@ -15,18 +18,24 @@ class IteratorArrayIterator implements \Iterator
 
     protected int $key = 0;
 
+    /**
+     * @param array<\Iterator<mixed>> $iteratorCollection
+     */
     public function __construct(
         array $iteratorCollection
     ) {
         $this->iteratorCollection = $iteratorCollection;
     }
 
-    public function current()
+    /**
+     * @return \Iterator<mixed>
+     */
+    public function current(): \Iterator
     {
         return $this->currentIterator()->current();
     }
 
-    public function next()
+    public function next(): void
     {
         $this->currentIterator()->next();
         if (!$this->currentIterator()->valid()) {
@@ -35,17 +44,17 @@ class IteratorArrayIterator implements \Iterator
         $this->key++;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return $this->currentPositionValid() && $this->currentIterator()->valid();
     }
 
-    public function key()
+    public function key(): int
     {
         return $this->key;
     }
 
-    public function rewind()
+    public function rewind(): void
     {
         $this->position = 0;
         $this->key = 0;
@@ -54,6 +63,9 @@ class IteratorArrayIterator implements \Iterator
         }
     }
 
+    /**
+     * @return \Iterator<mixed>
+     */
     protected function currentIterator(): \Iterator
     {
         if ($this->currentPositionValid()) {
