@@ -6,7 +6,7 @@ namespace Palmyr\CommonUtils\InternetProtocol\Netmask;
 
 use Palmyr\CommonUtils\InternetProtocol\Builder\NetmaskBuilderInterface;
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
-use Palmyr\Commonutils\InternetProtocol\Mask\MaskInterface;
+use Palmyr\CommonUtils\InternetProtocol\Mask\MaskInterface;
 use Palmyr\CommonUtils\String\StringAble;
 
 class Netmask extends StringAble implements NetmaskInterface

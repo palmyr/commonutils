@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\CIDR;
 
-use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4;
-use Palmyr\Commonutils\InternetProtocol\Range\Range;
+use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
+use Palmyr\CommonUtils\InternetProtocol\Range\RangeInterface;
 use Palmyr\CommonUtils\String\StringAbleInterface;
 
 interface CIDRInterface extends StringAbleInterface
@@ -13,22 +13,22 @@ interface CIDRInterface extends StringAbleInterface
     public const CIDR_SEPARATOR = '/';
 
     /**
-     * @return IPV4
+     * @return IPV4Interface
      */
-    public function getIPV4(): IPV4;
+    public function getIPV4(): IPV4Interface;
 
     /**
-     * @param IPV4 $IPV4
+     * @param IPV4Interface $IPV4
      */
-    public function setIPV4(IPV4 $IPV4): void;
+    public function setIPV4(IPV4Interface $IPV4): void;
 
     /**
-     * @return Range
+     * @return RangeInterface
      */
-    public function getRange(): Range;
+    public function getRange(): RangeInterface;
 
     /**
-     * @param Range $range
+     * @param RangeInterface $range
      */
-    public function setRange(Range $range): void;
+    public function setRange(RangeInterface $range): void;
 }

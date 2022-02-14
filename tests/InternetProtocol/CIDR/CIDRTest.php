@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Palmyr\Commonutils\InternetProtocol\CIDR;
+namespace Tests\Palmyr\CommonUtils\InternetProtocol\CIDR;
 
 use Palmyr\CommonUtils\InternetProtocol\Builder\CIDRBuilder;
 use Palmyr\CommonUtils\InternetProtocol\Builder\CIDRBuilderInterface;

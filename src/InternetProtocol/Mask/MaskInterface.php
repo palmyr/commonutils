@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Palmyr\Commonutils\InternetProtocol\Mask;
+namespace Palmyr\CommonUtils\InternetProtocol\Mask;
 
 use Palmyr\CommonUtils\String\StringAbleInterface;
 

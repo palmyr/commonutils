@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Palmyr\CommonUtils\InternetProtocol\Netmask;
 
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
-use Palmyr\Commonutils\InternetProtocol\Mask\MaskInterface;
+use Palmyr\CommonUtils\InternetProtocol\Mask\MaskInterface;
 use Palmyr\CommonUtils\String\StringAbleInterface;
 
 interface NetmaskInterface extends StringAbleInterface

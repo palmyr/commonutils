@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Builder;
 
-use Palmyr\CommonUtils\InternetProtocol\CIDR\CIDR;
 use Palmyr\CommonUtils\InternetProtocol\CIDR\CIDRInterface;
+use Palmyr\CommonUtils\InternetProtocol\CIDR\CIDR;
 use Palmyr\CommonUtils\InternetProtocol\Converter\SubnetConverterInterface;
 use Palmyr\CommonUtils\InternetProtocol\Exception\ValidationException;
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4;
@@ -31,6 +31,8 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
     {
         list($ipv4, $range) = $this->parse($cidr);
 
+        $range = (int)$range;
+
         $this->validateIPV4($ipv4);
         $this->validateRange($range);
 
@@ -49,7 +51,7 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
 
     /**
      * @param string $value
-     * @return array
+     * @return array<int,string>
      * @throws ValidationException
      */
     protected function parse(string $value): array
@@ -59,8 +61,6 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
         if (count($pieces) !== 2) {
             throw new ValidationException('The given value is not a valid CIDR');
         }
-
-        $pieces[1] = (int)$pieces[1];
 
         return $pieces;
     }

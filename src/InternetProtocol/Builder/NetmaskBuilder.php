@@ -58,7 +58,7 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
 
     /**
      * @param string $netmask
-     * @return array
+     * @return array<int,string>
      * @throws ValidationException
      */
     protected function parse(string $netmask): array

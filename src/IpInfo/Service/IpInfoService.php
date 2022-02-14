@@ -8,6 +8,9 @@ class IpInfoService implements IpInfoServiceInterface
 {
     protected string $uri;
 
+    /**
+     * @var array<string,mixed>
+     */
     protected array $rawIpInfo;
 
     public function __construct(
@@ -32,6 +35,9 @@ class IpInfoService implements IpInfoServiceInterface
         throw new \InvalidArgumentException('No data found for argument');
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     protected function getRawIpInfo(): array
     {
         if (!isset($this->rawIpInfo)) {
@@ -41,6 +47,9 @@ class IpInfoService implements IpInfoServiceInterface
         return $this->rawIpInfo;
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     protected function loadIpInfo(): array
     {
         if ($json = @file_get_contents($this->uri)) {
@@ -49,6 +58,6 @@ class IpInfoService implements IpInfoServiceInterface
 
         $error = error_get_last();
 
-        throw new \RuntimeException('Failed to get ip info from server');
+        throw new \RuntimeException(implode(', ', $error));
     }
 }

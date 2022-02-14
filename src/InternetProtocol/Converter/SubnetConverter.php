@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Palmyr\CommonUtils\InternetProtocol\Converter;
 
 use Palmyr\CommonUtils\InternetProtocol\Mask\Mask;
-use Palmyr\Commonutils\InternetProtocol\Mask\MaskInterface;
+use Palmyr\CommonUtils\InternetProtocol\Mask\MaskInterface;
 use Palmyr\CommonUtils\InternetProtocol\Range\Range;
 use Palmyr\CommonUtils\InternetProtocol\Range\RangeInterface;
 
