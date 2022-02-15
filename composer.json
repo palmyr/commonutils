@@ -1,5 +1,5 @@
 {
-    "name": "palmyr/CommonUtils",
+    "name": "palmyr/common-utils",
     "description": "Usefull classes",
     "type": "library",
     "autoload": {
