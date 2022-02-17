@@ -2,6 +2,10 @@
     "name": "palmyr/common-utils",
     "description": "Usefull classes",
     "type": "library",
+    "license": "GPL-3.0-only",
+    "authors": [
+        { "name": "Ryan Palm", "email":  "rspalm@bigpond.com" }
+    ],
     "autoload": {
         "psr-4": {
             "Palmyr\\CommonUtils\\": "src/"
