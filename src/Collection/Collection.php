@@ -8,15 +8,27 @@ use Palmyr\CommonUtils\String\StringInterface;
 
 interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Serializable
 {
+    /**
+     * @return array<int|string,mixed>
+     */
     public function toArray(): array;
 
-    public function get($key);
+    public function get(int|string $key): mixed;
 
-    public function set($key, $value): Collection;
+    /**
+     * @param int|string $key
+     * @param mixed $value
+     * @return Collection<int|string,mixed>
+     */
+    public function set(int|string $key, mixed $value): Collection;
 
-    public function remove($key);
+    public function remove(int|string $key): void;
 
+    /**
+     * @param array<int|string,mixed> $values
+     * @return Collection<int|string,mixed>
+     */
     public function add(array $values): Collection;
 
-    public function implode(string $separator): StringInterface;
+    public function implode(string $separator): string;
 }

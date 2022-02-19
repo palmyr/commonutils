@@ -6,9 +6,8 @@ namespace Palmyr\CommonUtils\InternetProtocol\Netmask;
 
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
 use Palmyr\CommonUtils\InternetProtocol\Mask\MaskInterface;
-use Palmyr\CommonUtils\String\StringAbleInterface;
 
-interface NetmaskInterface extends StringAbleInterface
+interface NetmaskInterface
 {
     /**
      * @return IPV4Interface
@@ -29,4 +28,6 @@ interface NetmaskInterface extends StringAbleInterface
      * @param MaskInterface $mask
      */
     public function setMask(MaskInterface $mask): void;
+
+    public function __toString(): string;
 }

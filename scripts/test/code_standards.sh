@@ -9,8 +9,7 @@ cd ${ROOT_DIR}
 phpcs --standard=PSR12 src/
 phpcs --standard=PSR12 tests/
 
-phpstan analyse src/ --level=7
-phpstan analyse test/ --level=7
+phpstan analyse
 
 vendor/bin/phpunit
 

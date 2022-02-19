@@ -7,6 +7,7 @@ namespace Tests\Palmyr\CommonUtils\InternetProtocol\Netmask;
 use Palmyr\CommonUtils\InternetProtocol\Builder\NetmaskBuilder;
 use Palmyr\CommonUtils\InternetProtocol\Converter\SubnetConverter;
 use PHPUnit\Framework\TestCase;
+use Palmyr\CommonUtils\InternetProtocol\Exception\ValidationException;
 
 class NetmaskTest extends TestCase
 {
@@ -16,6 +17,7 @@ class NetmaskTest extends TestCase
     /**
      * @param string $value
      * @return void
+     * @throws ValidationException
      * @dataProvider netmaskProvider
      * @covers NetmaskBuilder::build
      */

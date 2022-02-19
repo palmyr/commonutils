@@ -90,9 +90,9 @@ class ArrayCollection implements Collection
         return $this;
     }
 
-    public function implode(string $separator): StringInterface
+    public function implode(string $separator): string
     {
-        return new StringObject(implode($separator, $this->collection));
+        return implode($separator, $this->collection);
     }
 
     public function toArray(): array
