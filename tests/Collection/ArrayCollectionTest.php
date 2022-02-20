@@ -9,6 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 class ArrayCollectionTest extends TestCase
 {
+    /**
+     * @return void
+     * @covers ArrayCollection::count
+     */
     public function testCount(): void
     {
         $obj = new ArrayCollection([1,2,3]);
@@ -16,6 +20,10 @@ class ArrayCollectionTest extends TestCase
         $this->assertCount(3, $obj);
     }
 
+    /**
+     * @return void
+     * @covers ArrayCollection::get
+     */
     public function testGet(): void
     {
         $obj = new ArrayCollection([

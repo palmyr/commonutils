@@ -9,6 +9,10 @@ use PHPUnit\Framework\TestCase;
 
 class IteratorArrayIteratorTest extends TestCase
 {
+    /**
+     * @return void
+     * @covers IteratorArrayIterator::current
+     */
     public function testMultipleIterators(): void
     {
         $values = [

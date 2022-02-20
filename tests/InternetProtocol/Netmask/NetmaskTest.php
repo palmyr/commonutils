@@ -28,6 +28,9 @@ class NetmaskTest extends TestCase
         $this->assertEquals($value, (string)$netmask);
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function netmaskProvider(): array
     {
         return [

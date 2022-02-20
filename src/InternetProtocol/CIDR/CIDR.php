@@ -6,9 +6,8 @@ namespace Palmyr\CommonUtils\InternetProtocol\CIDR;
 
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
 use Palmyr\CommonUtils\InternetProtocol\Range\RangeInterface;
-use Palmyr\CommonUtils\String\StringAble;
 
-class CIDR extends StringAble implements CIDRInterface
+class CIDR implements CIDRInterface
 {
     protected IPV4Interface $IPV4;
 
@@ -18,14 +17,8 @@ class CIDR extends StringAble implements CIDRInterface
         IPV4Interface $IPV4,
         RangeInterface $range
     ) {
-        parent::__construct('');
         $this->IPV4 = $IPV4;
         $this->range = $range;
-    }
-
-    public function getString(): string
-    {
-        return $this->IPV4 . self::CIDR_SEPARATOR . $this->range;
     }
 
     /**
@@ -58,5 +51,15 @@ class CIDR extends StringAble implements CIDRInterface
     public function setRange(RangeInterface $range): void
     {
         $this->range = $range;
+    }
+
+    public function toString(): string
+    {
+        return $this->IPV4 . self::CIDR_SEPARATOR . $this->range;
+    }
+
+    public function __toString(): string
+    {
+        return $this->toString();
     }
 }

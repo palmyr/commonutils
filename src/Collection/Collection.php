@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\Collection;
 
-use Palmyr\CommonUtils\String\StringInterface;
-
 interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Serializable
 {
     /**
@@ -22,7 +20,7 @@ interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Seri
      */
     public function set(int|string $key, mixed $value): Collection;
 
-    public function remove(int|string $key): void;
+    public function remove(int|string $key): mixed;
 
     /**
      * @param array<int|string,mixed> $values

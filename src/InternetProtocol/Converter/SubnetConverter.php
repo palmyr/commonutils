@@ -13,7 +13,7 @@ class SubnetConverter implements SubnetConverterInterface
 {
     public function rangeToMask(RangeInterface $range): MaskInterface
     {
-        $pieces = str_split(str_pad(str_pad('', (int)$range->getString(), '1'), 32, '0'), 8);
+        $pieces = str_split(str_pad(str_pad('', (int)$range->toString(), '1'), 32, '0'), 8);
 
         $pieces = array_map('bindec', $pieces);
 
@@ -22,7 +22,7 @@ class SubnetConverter implements SubnetConverterInterface
 
     public function maskToRange(MaskInterface $mask): RangeInterface
     {
-        $pieces = explode('.', $mask->getString());
+        $pieces = explode('.', $mask->toString());
 
         $pieces = array_map('intval', $pieces);
         $pieces = array_map('decbin', $pieces);

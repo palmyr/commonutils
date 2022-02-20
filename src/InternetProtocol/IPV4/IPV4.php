@@ -4,12 +4,22 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\IPV4;
 
-use Palmyr\CommonUtils\String\StringAble;
-
-class IPV4 extends StringAble implements IPV4Interface
+class IPV4 implements IPV4Interface
 {
+    protected string $value;
+
     public function __construct(string $value)
     {
-        parent::__construct($value);
+        $this->value = $value;
+    }
+
+    public function toString(): string
+    {
+        return $this->value;
+    }
+
+    public function __toString(): string
+    {
+        return $this->toString();
     }
 }

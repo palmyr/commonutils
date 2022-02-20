@@ -16,33 +16,41 @@ class SubnetConverterTest extends TestCase
 
     /**
      * @dataProvider rangeDataProvider
+     * @covers SubnetConverter::rangeToMask
      */
     public function testConvertRangeToMask(int $range, string $result): void
     {
         $range = new Range($range);
 
-        $mask = $this->subnetConverter->RangeToMask($range);
+        $mask = $this->subnetConverter->rangeToMask($range);
 
         $this->assertEquals($result, $mask);
     }
 
     /**
      * @dataProvider maskDataProvider
+     * @covers SubnetConverter::maskToRange
      */
     public function testConvertMaskToRange(string $mask, int $result): void
     {
         $mask = new Mask($mask);
 
-        $range = $this->subnetConverter->MaskToRange($mask);
+        $range = $this->subnetConverter->maskToRange($mask);
 
         $this->assertEquals($result, $range->getValue());
     }
 
+    /**
+     * @return array<int,array<int,string|int>>
+     */
     public function rangeDataProvider(): array
     {
         return $this->baseDataProvider();
     }
 
+    /**
+     * @return array<int,array<int,string|int>>
+     */
     public function maskDataProvider(): array
     {
         $data = $this->baseDataProvider();
@@ -54,6 +62,9 @@ class SubnetConverterTest extends TestCase
         return $data;
     }
 
+    /**
+     * @return array<int,array<int,string|int>>
+     */
     protected function baseDataProvider(): array
     {
         return [

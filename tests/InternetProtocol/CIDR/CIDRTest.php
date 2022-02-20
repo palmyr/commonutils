@@ -22,9 +22,12 @@ class CIDRTest extends TestCase
     {
         $cidr = $this->builder->build($value);
 
-        $this->assertEquals($value, $cidr->getString());
+        $this->assertEquals($value, $cidr->toString());
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function CIDRDateProvider(): array
     {
         return [

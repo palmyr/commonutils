@@ -22,13 +22,13 @@ class Range implements RangeInterface
         return $this->value;
     }
 
-    public function getString(): string
+    public function toString(): string
     {
         return (string)$this->value;
     }
 
     public function __toString(): string
     {
-        return $this->getString();
+        return $this->toString();
     }
 }

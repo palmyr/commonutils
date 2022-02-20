@@ -28,9 +28,9 @@ class IteratorArrayIterator implements \Iterator
     }
 
     /**
-     * @return \Iterator<mixed>
+     * @return mixed
      */
-    public function current(): \Iterator
+    public function current(): mixed
     {
         return $this->currentIterator()->current();
     }
