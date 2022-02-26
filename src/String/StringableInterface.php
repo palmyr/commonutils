@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\String;
 
-interface StringAbleInterface
+interface StringableInterface extends \Stringable
 {
     public function toString(): string;
 

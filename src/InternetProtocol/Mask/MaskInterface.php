@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\InternetProtocol\Mask;
 
-use Palmyr\CommonUtils\String\StringAbleInterface;
+use Palmyr\CommonUtils\String\StringableInterface;
 
-interface MaskInterface extends StringAbleInterface
+interface MaskInterface extends StringableInterface
 {
 }

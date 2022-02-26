@@ -6,9 +6,9 @@ namespace Palmyr\CommonUtils\InternetProtocol\CIDR;
 
 use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
 use Palmyr\CommonUtils\InternetProtocol\Range\RangeInterface;
-use Palmyr\CommonUtils\String\StringAbleInterface;
+use Palmyr\CommonUtils\String\StringableInterface;
 
-interface CIDRInterface extends StringAbleInterface
+interface CIDRInterface extends StringableInterface
 {
     public const CIDR_SEPARATOR = '/';
 
