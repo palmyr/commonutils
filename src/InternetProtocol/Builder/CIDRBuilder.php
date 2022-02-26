@@ -23,7 +23,7 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
     }
 
     /**
-     * @param string $cidr
+     * @param  string $cidr
      * @return CIDRInterface
      * @throws ValidationException
      */
@@ -50,7 +50,7 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
     }
 
     /**
-     * @param string $value
+     * @param  string $value
      * @return array<int,string>
      * @throws ValidationException
      */
@@ -66,7 +66,7 @@ class CIDRBuilder extends AbstractBuilder implements CIDRBuilderInterface
     }
 
     /**
-     * @param int $range
+     * @param  int $range
      * @throws ValidationException
      */
     protected function validateRange(int $range): void

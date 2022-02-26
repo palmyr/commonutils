@@ -21,7 +21,7 @@ class ArrayCollection implements Collection
     }
 
     /**
-     * @param mixed $offset
+     * @param  mixed $offset
      * @return bool
      */
     public function offsetExists(mixed $offset): bool
@@ -30,7 +30,7 @@ class ArrayCollection implements Collection
     }
 
     /**
-     * @param mixed $offset
+     * @param  mixed $offset
      * @return mixed
      */
     public function offsetGet(mixed $offset): mixed
@@ -39,8 +39,8 @@ class ArrayCollection implements Collection
     }
 
     /**
-     * @param mixed $offset
-     * @param mixed $value
+     * @param  mixed $offset
+     * @param  mixed $value
      * @return void
      */
     public function offsetSet(mixed $offset, mixed $value): void
@@ -49,7 +49,7 @@ class ArrayCollection implements Collection
     }
 
     /**
-     * @param mixed $offset
+     * @param  mixed $offset
      * @return void
      */
     public function offsetUnset(mixed $offset): void
@@ -81,7 +81,7 @@ class ArrayCollection implements Collection
     }
 
     /**
-     * @param array<int|string,mixed> $data
+     * @param  array<int|string,mixed> $data
      * @return void
      */
     public function __unserialize(array $data): void

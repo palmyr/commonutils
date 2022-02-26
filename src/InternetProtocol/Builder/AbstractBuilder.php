@@ -10,7 +10,7 @@ use Palmyr\CommonUtils\InternetProtocol\IPV4\IPV4Interface;
 abstract class AbstractBuilder
 {
     /**
-     * @param string $ipv4
+     * @param  string $ipv4
      * @throws ValidationException
      */
     protected function validateIPV4(string $ipv4): void

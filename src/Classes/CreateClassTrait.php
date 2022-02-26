@@ -20,7 +20,7 @@ trait CreateClassTrait
     }
 
     /**
-     * @param array $items
+     * @param  array $items
      * @return Collection<int|string,mixed>
      */
     public static function createFromArray(array $items): Collection

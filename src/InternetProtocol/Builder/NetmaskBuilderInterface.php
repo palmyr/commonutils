@@ -13,7 +13,7 @@ interface NetmaskBuilderInterface
     public const NETMASK_SEPARATOR = ' ';
 
     /**
-     * @param string $netmask
+     * @param  string $netmask
      * @return NetmaskInterface
      * @throws ValidationException
      */

@@ -14,8 +14,8 @@ interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Seri
     public function get(int|string $key): mixed;
 
     /**
-     * @param int|string $key
-     * @param mixed $value
+     * @param  int|string $key
+     * @param  mixed      $value
      * @return Collection<int|string,mixed>
      */
     public function set(int|string $key, mixed $value): Collection;
@@ -23,7 +23,7 @@ interface Collection extends \Countable, \ArrayAccess, \IteratorAggregate, \Seri
     public function remove(int|string $key): mixed;
 
     /**
-     * @param array<int|string,mixed> $values
+     * @param  array<int|string,mixed> $values
      * @return Collection<int|string,mixed>
      */
     public function add(array $values): Collection;

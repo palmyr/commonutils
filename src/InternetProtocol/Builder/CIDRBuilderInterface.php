@@ -15,7 +15,7 @@ interface CIDRBuilderInterface
     public const RANGE_MAXIMUM = 32;
 
     /**
-     * @param string $cidr
+     * @param  string $cidr
      * @return CIDRInterface
      * @throws ValidationException
      */

@@ -23,7 +23,7 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
     }
 
     /**
-     * @param string $netmask
+     * @param  string $netmask
      * @return NetmaskInterface
      * @throws ValidationException
      */
@@ -48,7 +48,7 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
     }
 
     /**
-     * @param string $mask
+     * @param  string $mask
      * @throws ValidationException
      */
     protected function validateMask(string $mask): void
@@ -57,7 +57,7 @@ class NetmaskBuilder extends AbstractBuilder implements NetmaskBuilderInterface
     }
 
     /**
-     * @param string $netmask
+     * @param  string $netmask
      * @return array<int,string>
      * @throws ValidationException
      */
