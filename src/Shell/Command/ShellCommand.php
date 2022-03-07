@@ -46,7 +46,7 @@ class ShellCommand implements ShellCommandInterface
 
         try {
             $this->fileSystem->setCurrentWorkingDirectory($this->workingDirectory);
-            exec($this->toString(), $output, $code);
+            $this->executeRaw($this->toString(), $output, $code);
             $this->fileSystem->setCurrentWorkingDirectory($currentDirectory);
         } catch (FileSystemException $e) {
             throw new ShellException('Filesystem error', 0, $e);
@@ -72,6 +72,11 @@ class ShellCommand implements ShellCommandInterface
     protected function escapeArgument(string $argument): string
     {
         return escapeshellarg($argument);
+    }
+
+    protected function executeRaw(string $command, &$output, &$code): bool
+    {
+        return (bool)exec($command, $output, $code);
     }
 
     public function toString(): string
