@@ -19,7 +19,7 @@ class ShellCommand implements ShellCommandInterface
     /**
      * @var array<int,string>
      */
-    protected array $arguments;
+    protected array $arguments = [];
 
     protected string $workingDirectory;
 
@@ -35,8 +35,8 @@ class ShellCommand implements ShellCommandInterface
         string $workingDirectory
     ) {
         $this->fileSystem = $fileSystem;
-        $this->command = $this->escapeCommand($command);
-        $this->arguments = $this->escapeArguments($arguments);
+        $this->command = $command;
+        $this->setArguments($arguments);
         $this->workingDirectory = $this->fileSystem->realPath($workingDirectory);
     }
 
@@ -55,18 +55,15 @@ class ShellCommand implements ShellCommandInterface
         return new ShellResult($code, $output);
     }
 
-    protected function escapeCommand(string $argument): string
-    {
-        return escapeshellcmd($argument);
-    }
-
     /**
-     * @param array<int,string> $arguments
-     * @return array<int,string>
+     * @param array $arguments
+     * @return void
      */
-    protected function escapeArguments(array $arguments): array
+    protected function setArguments(array $arguments): void
     {
-        return array_map([$this, 'escapeArgument'], $arguments);
+        foreach ( $arguments as $key => $argument ) {
+            $this->arguments['{{'.$key.'}}'] = $this->escapeArgument($argument);
+        }
     }
 
     protected function escapeArgument(string $argument): string
@@ -81,7 +78,7 @@ class ShellCommand implements ShellCommandInterface
 
     public function toString(): string
     {
-        return $this->command . ' ' . implode(' ', $this->arguments);
+        return str_replace(array_keys($this->arguments), array_values($this->arguments), $this->command);
     }
 
     public function __toString(): string
