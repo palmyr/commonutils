@@ -61,8 +61,8 @@ class ShellCommand implements ShellCommandInterface
      */
     protected function setArguments(array $arguments): void
     {
-        foreach ( $arguments as $key => $argument ) {
-            $this->arguments['{{'.$key.'}}'] = $this->escapeArgument($argument);
+        foreach ($arguments as $key => $argument) {
+            $this->arguments['{{' . $key . '}}'] = $this->escapeArgument($argument);
         }
     }
 

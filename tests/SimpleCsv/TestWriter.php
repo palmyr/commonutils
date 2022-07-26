@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Tests\Palmyr\CommonUtils\SimpleCsv;
 
@@ -9,7 +11,6 @@ use PHPUnit\Framework\TestCase;
 
 class TestWriter extends TestCase
 {
-
     protected const RESOURCE_DIRECTORY = __DIR__ . '/Resources';
 
     protected const VERIFY_FILE = self::RESOURCE_DIRECTORY . '/verify.csv';
@@ -33,7 +34,7 @@ class TestWriter extends TestCase
 
         $this->assertFileDoesNotExist($fileName);
 
-        foreach ( $rows as $row ) {
+        foreach ($rows as $row) {
             $writer->put($row);
         }
 

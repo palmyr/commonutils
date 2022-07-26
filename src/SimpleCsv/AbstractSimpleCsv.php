@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\SimpleCsv;
 
 abstract class AbstractSimpleCsv implements SimpleCsvInterface
 {
-
     private string $fileName;
 
     private array $headers;
@@ -13,8 +14,7 @@ abstract class AbstractSimpleCsv implements SimpleCsvInterface
 
     public function __construct(
         string $fileName
-    )
-    {
+    ) {
         $this->fileName = $fileName;
     }
 
@@ -32,7 +32,7 @@ abstract class AbstractSimpleCsv implements SimpleCsvInterface
 
     protected function loadResource(): SimpleCsvInterface
     {
-        if ( !isset($this->resource) ) {
+        if (!isset($this->resource)) {
             $this->resource = $this->loadRawResource();
         }
         return $this;

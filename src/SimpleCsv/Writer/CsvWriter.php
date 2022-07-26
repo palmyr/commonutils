@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\SimpleCsv\Writer;
 
@@ -6,19 +8,16 @@ use Palmyr\CommonUtils\SimpleCsv\AbstractSimpleCsv;
 
 class CsvWriter extends AbstractSimpleCsv implements CsvWriterInterface
 {
-
     public function __construct(
         string $fileName,
         array $headers
-    )
-    {
+    ) {
         parent::__construct($fileName);
         $this->setHeaders($headers);
     }
 
     public function put(array $data): CsvWriterInterface
     {
-
         uksort($data, [$this, "sortRow"]);
 
         $this->putRaw($data);

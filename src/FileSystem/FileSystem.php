@@ -34,8 +34,7 @@ class FileSystem implements FileSystemInterface
 
     public function remove(string $fileName): void
     {
-        if ( !@unlink($fileName) )
-        {
+        if (!@unlink($fileName)) {
             $error = error_get_last();
 
             throw new FileSystemException(implode(', ', $error));
