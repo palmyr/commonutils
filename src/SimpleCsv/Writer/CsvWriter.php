@@ -2,41 +2,43 @@
 
 namespace Palmyr\CommonUtils\SimpleCsv\Writer;
 
-class CsvWriter implements CsvWriterInterface
+use Palmyr\CommonUtils\SimpleCsv\AbstractSimpleCsv;
+
+class CsvWriter extends AbstractSimpleCsv implements CsvWriterInterface
 {
-
-    protected string $fileName;
-
-    protected array $headers;
-
-    /**
-     * @var resource
-     */
-    protected $resource;
 
     public function __construct(
         string $fileName,
         array $headers
     )
     {
-        $this->fileName = $fileName;
-        $this->headers = $headers;
+        parent::__construct($fileName);
+        $this->setHeaders($headers);
     }
 
     public function put(array $data): CsvWriterInterface
     {
-        $this->loadResource();
-        fputcsv($this->resource, $data);
+
+        uksort($data, [$this, "sortRow"]);
+
+        $this->putRaw($data);
 
         return $this;
     }
 
-    protected function loadResource(): void
+    protected function loadRawResource(): \SplFileObject
     {
-        if ( !is_resource($this->resource) ) {
-            $this->resource = fopen($this->fileName, 'w');
+        return new \SplFileObject($this->getFileName(), 'w');
+    }
 
-            $this->put($this->headers);
-        }
+    protected function sortRow(string $headerA, string $headerB): bool
+    {
+        return array_search($headerA, $this->getHeaders()) > array_search($headerB, $this->getHeaders());
+    }
+
+    protected function putRaw(array $data): void
+    {
+        $this->loadResource();
+        $this->getResource()->fputcsv($data);
     }
 }

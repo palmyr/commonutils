@@ -2,16 +2,10 @@
 
 namespace Palmyr\CommonUtils\SimpleCsv\Reader;
 
-interface CsvReaderInterface
+use Palmyr\CommonUtils\SimpleCsv\SimpleCsvInterface;
+
+interface CsvReaderInterface extends SimpleCsvInterface
 {
-
-    static public function createFromPath(string $fileName, string $mode = 'r'): CsvReaderInterface;
-
-    /**
-     * @return array<int,mixed>
-     */
-    public function headers(): array;
-
     /**
      * @return \Generator
      */

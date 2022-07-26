@@ -2,30 +2,41 @@
 
 namespace Palmyr\CommonUtils\SimpleCsv\Reader;
 
-use Palmyr\CommonUtils\FileSystem\Exception\FileSystemException;
-use Palmyr\CommonUtils\SimpleCsv\SimpleCsv;
+use Palmyr\CommonUtils\SimpleCsv\AbstractSimpleCsv;
+use Palmyr\CommonUtils\SimpleCsv\SimpleCsvInterface;
 
-class SimpleCsvReader extends SimpleCsv implements CsvReaderInterface
+class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
 {
-
-    protected array $headers;
-
-
-    public static function createFromPath(string $fileName, string $mode = 'r'): CsvReaderInterface
-    {
-        return new static(new \SplFileObject($fileName, $mode));
-    }
-
-
-    public function headers(): array
-    {
-        return $this->headers;
-    }
 
     public function get(): \Generator
     {
-
+        while ( $row = $this->rawGet() ) {
+            if ( count($row) === 1 && $row[0] === null) {
+                /* Here in the case it is the last row send return*/
+                return;
+            }
+            yield $row;
+        }
     }
 
+    protected function loadRawResource(): \SplFileObject
+    {
+        return new \SplFileObject($this->getFileName());
+    }
 
+    protected function loadResource(): SimpleCsvInterface
+    {
+        parent::loadResource();
+
+        $headers = $this->rawGet();
+
+        $this->setHeaders($headers);
+
+        return $this;
+    }
+
+    private function rawGet(): array
+    {
+        return $this->getResource()->fgetcsv();
+    }
 }

@@ -31,4 +31,14 @@ class FileSystem implements FileSystemInterface
 
         throw new FileSystemException('Unable to read realpath');
     }
+
+    public function remove(string $fileName): void
+    {
+        if ( !@unlink($fileName) )
+        {
+            $error = error_get_last();
+
+            throw new FileSystemException(implode(', ', $error));
+        }
+    }
 }

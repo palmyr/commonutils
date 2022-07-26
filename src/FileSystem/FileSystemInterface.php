@@ -23,4 +23,11 @@ interface FileSystemInterface
      * @throws FileSystemException
      */
     public function realPath(string $path): string;
+
+    /**
+     * @param string $fileName
+     * @return void
+     * @throws FileSystemException
+     */
+    public function remove(string $fileName): void;
 }
