@@ -11,11 +11,24 @@ class TestReader extends TestCase
 {
     protected const VERIFY_FILE = __DIR__ . '/Resources/verify.csv';
 
-    public function testRead(): void
+    /**
+     * @return void
+     * @covers CsvReader::getHeaders
+     */
+    public function testHeaders(): void
     {
         $reader = new CsvReader(self::VERIFY_FILE);
 
         $this->assertEquals(["Header1", "Header2", "Header3"], $reader->getHeaders());
+    }
+
+    /**
+     * @return void
+     * @covers CsvReader::get
+     */
+    public function testRead(): void
+    {
+        $reader = new CsvReader(self::VERIFY_FILE);
 
         $loader = $reader->get();
         foreach ($loader as $itemKey => $row) {

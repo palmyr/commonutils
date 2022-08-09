@@ -30,6 +30,18 @@ abstract class AbstractSimpleCsv implements SimpleCsvInterface
         return $this->headers;
     }
 
+    protected function setHeaders(array $headers): SimpleCsvInterface
+    {
+        $this->headers = $headers;
+
+        return $this;
+    }
+
+    protected function headersLoaded(): bool
+    {
+        return isset($this->headers);
+    }
+
     protected function loadResource(): SimpleCsvInterface
     {
         if (!isset($this->resource)) {
@@ -39,13 +51,6 @@ abstract class AbstractSimpleCsv implements SimpleCsvInterface
     }
 
     abstract protected function loadRawResource(): \SplFileObject;
-
-    protected function setHeaders(array $headers): SimpleCsvInterface
-    {
-        $this->headers = $headers;
-
-        return $this;
-    }
 
     protected function getResource(): \SplFileObject
     {

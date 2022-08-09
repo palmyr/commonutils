@@ -11,6 +11,7 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
 {
     public function get(): \Generator
     {
+        $this->loadResource();
         while ($row = $this->rawGet()) {
             if (count($row) === 1 && $row[0] === null) {
                 /* Here in the case it is the last row send return*/
@@ -29,9 +30,10 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
     {
         parent::loadResource();
 
-        $headers = $this->rawGet();
-
-        $this->setHeaders($headers);
+        if ( !$this->headersLoaded() ) {
+            $headers = $this->rawGet();
+            $this->setHeaders($headers);
+        }
 
         return $this;
     }
