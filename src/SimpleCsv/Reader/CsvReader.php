@@ -5,20 +5,34 @@ declare(strict_types=1);
 namespace Palmyr\CommonUtils\SimpleCsv\Reader;
 
 use Palmyr\CommonUtils\SimpleCsv\AbstractSimpleCsv;
+use Palmyr\CommonUtils\SimpleCsv\Exception\CsvException;
 use Palmyr\CommonUtils\SimpleCsv\SimpleCsvInterface;
 
 class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
 {
-    public function get(): \Generator
+    public function getIterator(): \Generator
     {
         $this->loadResource();
         while ($row = $this->rawGet()) {
             if (count($row) === 1 && $row[0] === null) {
-                /* Here in the case it is the last row send return*/
-                return;
+                /* Here in the case it is an empty row we skip it */
+                continue;
             }
-            yield $row;
+            $mappedRows = $this->mapHeaders($row);
+
+            yield $mappedRows;
         }
+    }
+
+    public function toArray(): array
+    {
+        $rows = [];
+
+        foreach ( $this->getIterator() as $row ) {
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 
     protected function loadRawResource(): \SplFileObject
@@ -38,8 +52,32 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
         return $this;
     }
 
-    private function rawGet(): array
+    private function mapHeaders(array $row): array
     {
-        return $this->getResource()->fgetcsv();
+
+        $rowCount = count($row);
+
+        if ( $this->getHeadersCount() !== $rowCount ) {
+            throw new CsvException("the header count does not match");
+        }
+
+        $headers = $this->getHeaders();
+
+        $mappedRows = [];
+
+        foreach ( $row as $key => $value ) {
+            $header = $headers[$key];
+            $mappedRows[$header] = $value;
+        }
+
+        return $mappedRows;
+    }
+
+    private function rawGet(): ?array
+    {
+        if ( $row = $this->getResource()->fgetcsv() ) {
+            return $row;
+        }
+        return null;
     }
 }

@@ -11,6 +11,8 @@ class TestReader extends TestCase
 {
     protected const VERIFY_FILE = __DIR__ . '/Resources/verify.csv';
 
+    protected const HEADERS = ["Header1", "Header2", "Header3"];
+
     /**
      * @return void
      * @covers CsvReader::getHeaders
@@ -19,7 +21,7 @@ class TestReader extends TestCase
     {
         $reader = new CsvReader(self::VERIFY_FILE);
 
-        $this->assertEquals(["Header1", "Header2", "Header3"], $reader->getHeaders());
+        $this->assertEquals(self::HEADERS, $reader->getHeaders());
     }
 
     /**
@@ -30,15 +32,14 @@ class TestReader extends TestCase
     {
         $reader = new CsvReader(self::VERIFY_FILE);
 
-        $loader = $reader->get();
-        foreach ($loader as $itemKey => $row) {
+        foreach ($reader->getIterator() as $rowNumber => $row) {
             $this->assertIsArray($row);
             $this->assertCount(3, $row);
-            $baseRowValue = $itemKey * 3;
-            foreach ($row as $rowKey => $value) {
-                $expectedValue = "Value" . (string)($baseRowValue + $rowKey + 1);
+            $baseRowValue = $rowNumber * count(self::HEADERS);
+            foreach ( self::HEADERS as $headerkey => $header ) {
+                $expectedValue = "Value" . (string)($baseRowValue + $headerkey + 1);
 
-                $this->assertEquals($expectedValue, $row[$rowKey]);
+                $this->assertEquals($expectedValue, $row[$header]);
             }
         }
     }

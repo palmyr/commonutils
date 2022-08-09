@@ -9,4 +9,6 @@ interface SimpleCsvInterface
     public function getFileName(): string;
 
     public function getHeaders(): array;
+
+    public function getHeadersCount(): int;
 }

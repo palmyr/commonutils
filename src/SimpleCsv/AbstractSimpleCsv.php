@@ -10,6 +10,8 @@ abstract class AbstractSimpleCsv implements SimpleCsvInterface
 
     private array $headers;
 
+    private int $headersCount;
+
     private \SplFileObject $resource;
 
     public function __construct(
@@ -23,6 +25,11 @@ abstract class AbstractSimpleCsv implements SimpleCsvInterface
         return $this->fileName;
     }
 
+    public function getHeadersCount(): int
+    {
+        return $this->headersCount;
+    }
+
     public function getHeaders(): array
     {
         $this->loadResource();
@@ -33,6 +40,7 @@ abstract class AbstractSimpleCsv implements SimpleCsvInterface
     protected function setHeaders(array $headers): SimpleCsvInterface
     {
         $this->headers = $headers;
+        $this->headersCount = count($headers);
 
         return $this;
     }

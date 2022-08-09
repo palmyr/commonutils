@@ -8,8 +8,7 @@ use Palmyr\CommonUtils\SimpleCsv\SimpleCsvInterface;
 
 interface CsvReaderInterface extends SimpleCsvInterface
 {
-    /**
-     * @return \Generator
-     */
-    public function get(): \Generator;
+    public function getIterator(): \Iterator;
+
+    public function toArray(): array;
 }
