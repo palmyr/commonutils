@@ -14,10 +14,12 @@ class PalmyrIpInfoAccessor implements IpInfoAccessorInterface
     protected LoggerInterface $logger;
 
     public function __construct(
-        Client $client
+        Client $client,
+        LoggerInterface $logger
     )
     {
         $this->client = $client;
+        $this->logger = $logger;
     }
 
     public function getIp(): ?string
