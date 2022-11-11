@@ -11,11 +11,11 @@ class PalmyrIpInfoAccessor implements IpInfoAccessorInterface
 
     protected Client $client;
 
-    protected LoggerInterface $logger;
+    protected ?LoggerInterface $logger;
 
     public function __construct(
         Client $client,
-        LoggerInterface $logger
+        LoggerInterface $logger = null
     )
     {
         $this->client = $client;
@@ -32,7 +32,9 @@ class PalmyrIpInfoAccessor implements IpInfoAccessorInterface
             return $data->ip ?: null;
 
         } catch ( GuzzleException $e ) {
-            $this->logger->error(sprintf("Failed to get ip info %s", $e));
+            if ( !is_null($this->logger) ) {
+                $this->logger->error(sprintf("Failed to get ip info %s", $e));
+            }
             return null;
         }
     }

@@ -9,6 +9,7 @@ use Palmyr\CommonUtils\IpInfo\IpInfoAccessor\IpInfoAccessorInterface;
 use Palmyr\CommonUtils\IpInfo\IpInfoAccessor\PalmyrIpInfoAccessor;
 use Palmyr\CommonUtils\IpInfo\Service\IpInfoService;
 use Palmyr\CommonUtils\IpInfo\Service\IpInfoServiceInterface;
+use Psr\Log\LoggerInterface;
 
 class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
 {
@@ -18,7 +19,8 @@ class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
     protected ClientFactoryInterface $clientFactory;
 
     public function __construct(
-        ClientFactoryInterface $clientFactory = null
+        ClientFactoryInterface $clientFactory = null,
+        LoggerInterface $logger = null
     )
     {
         if ( is_null($clientFactory) ) {
@@ -27,8 +29,10 @@ class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
 
         $this->clientFactory = $clientFactory;
 
+
+
         $this->ipInfoAccessors = [
-            new PalmyrIpInfoAccessor($this->clientFactory->createClient()),
+            new PalmyrIpInfoAccessor($this->clientFactory->createClient(), $logger),
             new IpInfoAccessor($this->clientFactory->createClient()),
         ];
     }
