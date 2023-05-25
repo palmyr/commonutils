@@ -19,7 +19,7 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=8.2",
-        "guzzlehttp/guzzle": "^7.4",
+        "guzzlehttp/guzzle": "^6.5.8|^7.4.5",
         "monolog/monolog": "^2.0|^3.0",
         "symfony/framework-bundle": "^5.0|^6.0"
     },
