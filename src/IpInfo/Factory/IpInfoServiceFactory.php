@@ -18,6 +18,8 @@ class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
 
     protected ClientFactoryInterface $clientFactory;
 
+    protected ?LoggerInterface $logger;
+
     public function __construct(
         ClientFactoryInterface $clientFactory = null,
         LoggerInterface $logger = null
@@ -28,18 +30,19 @@ class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
         }
 
         $this->clientFactory = $clientFactory;
+        $this->logger = $logger;
 
 
 
         $this->ipInfoAccessors = [
-            new PalmyrIpInfoAccessor($this->clientFactory->createClient(), $logger),
+            new PalmyrIpInfoAccessor($this->clientFactory->createClient()),
             new IpInfoAccessor($this->clientFactory->createClient()),
         ];
     }
 
     public function createIpInfoService(): IpInfoServiceInterface
     {
-        return new IpInfoService($this->ipInfoAccessors);
+        return new IpInfoService($this->ipInfoAccessors, $this->logger);
     }
 
     public function addIpInfoAccessor(IpInfoAccessorInterface $ipInfoAccessor): IpInfoServiceFactoryInterface

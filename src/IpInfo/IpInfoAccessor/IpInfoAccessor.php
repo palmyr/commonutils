@@ -10,8 +10,6 @@ class IpInfoAccessor implements IpInfoAccessorInterface
 {
     protected Client $client;
 
-    protected LoggerInterface $logger;
-
     public function __construct(
         Client $client
     )
@@ -21,16 +19,10 @@ class IpInfoAccessor implements IpInfoAccessorInterface
 
     public function getIp(): ?string
     {
-        try {
-            $response = $this->client->get("https://ipinfo.io/json");
+        $response = $this->client->get("https://ipinfo.io/json");
 
-            $data = json_decode((string)$response->getBody());
+        $data = json_decode((string)$response->getBody());
 
-            return $data->ip ?: null;
-
-        } catch ( GuzzleException $e ) {
-            $this->logger->error(sprintf("Failed to get ip info %s", $e));
-            return null;
-        }
+        return $data->ip ?: null;
     }
 }
