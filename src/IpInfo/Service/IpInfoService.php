@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Palmyr\CommonUtils\IpInfo\Service;
 
 use GuzzleHttp\Client;
+use Palmyr\CommonUtils\IpInfo\Exception\IpInfoException;
 use Palmyr\CommonUtils\IpInfo\IpInfoAccessor\IpInfoAccessorInterface;
+use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
 use Psr\Log\LoggerInterface;
 
 class IpInfoService implements IpInfoServiceInterface
@@ -15,6 +17,8 @@ class IpInfoService implements IpInfoServiceInterface
      * @var IpInfoAccessorInterface[]
      */
     protected array $ipInfoHandlerCollection;
+
+    protected ?IpInfoModelInterface $ipInfoModel;
 
     protected ?LoggerInterface $logger;
 
@@ -27,24 +31,28 @@ class IpInfoService implements IpInfoServiceInterface
     }
 
     /**
-     * @throws \Exception
+     * @return IpInfoModelInterface
+     * @throws IpInfoException
      */
-    public function getIp(): string
+    public function getIpInfo(): IpInfoModelInterface
     {
+
+        if (isset($this->ipInfoModel) ) {
+            return $this->ipInfoModel;
+        }
+
         foreach ( $this->ipInfoHandlerCollection as $ipInfoHandler ) {
             try {
-                if ( $ip = $ipInfoHandler->getIp() ) {
-                    return $ip;
-                }
+                return $this->ipInfoModel = $ipInfoHandler->getInfo();
             } catch ( \Exception $e ) {
                 if ( $this->logger ) {
-                    $this->logger->error((string)$e);
+                    $this->logger->warning((string)$e);
                 } else {
                     trigger_error((string)$e, E_USER_WARNING);
                 }
             }
         }
 
-        throw new \Exception("Failed to get ip");
+        throw new IpInfoException("Failed to get ip.");
     }
 }

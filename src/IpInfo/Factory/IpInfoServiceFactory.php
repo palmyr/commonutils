@@ -35,7 +35,6 @@ class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
 
 
         $this->ipInfoAccessors = [
-            new PalmyrIpInfoAccessor($this->clientFactory->createClient()),
             new IpInfoAccessor($this->clientFactory->createClient()),
         ];
     }

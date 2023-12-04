@@ -3,13 +3,10 @@
 namespace Palmyr\CommonUtils\IpInfo\IpInfoAccessor;
 
 use GuzzleHttp\Exception\GuzzleException;
+use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
 
 interface IpInfoAccessorInterface
 {
 
-    /**
-     * @return string|null
-     * @throws GuzzleException
-     */
-    public function getIp(): ?string;
+    public function getInfo(): IpInfoModelInterface;
 }
