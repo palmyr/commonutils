@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\FileSystem\Service;
 
 class CommonPathService implements CommonPathServiceInterface
 {
-
     public static function getHomeDirectory(): string
     {
         // On Linux/Unix-like systems, use the HOME environment variable

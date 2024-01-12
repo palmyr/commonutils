@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\IpInfo\Factory;
 
@@ -13,7 +15,6 @@ use Psr\Log\LoggerInterface;
 
 class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
 {
-
     protected array $ipInfoAccessors;
 
     protected ClientFactoryInterface $clientFactory;
@@ -23,9 +24,8 @@ class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
     public function __construct(
         ClientFactoryInterface $clientFactory = null,
         LoggerInterface $logger = null
-    )
-    {
-        if ( is_null($clientFactory) ) {
+    ) {
+        if (is_null($clientFactory)) {
             $clientFactory = ClientFactory::create();
         }
 

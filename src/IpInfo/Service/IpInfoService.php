@@ -12,7 +12,6 @@ use Psr\Log\LoggerInterface;
 
 class IpInfoService implements IpInfoServiceInterface
 {
-
     /**
      * @var IpInfoAccessorInterface[]
      */
@@ -37,15 +36,15 @@ class IpInfoService implements IpInfoServiceInterface
     public function getIpInfo(): IpInfoModelInterface
     {
 
-        if (isset($this->ipInfoModel) ) {
+        if (isset($this->ipInfoModel)) {
             return $this->ipInfoModel;
         }
 
-        foreach ( $this->ipInfoHandlerCollection as $ipInfoHandler ) {
+        foreach ($this->ipInfoHandlerCollection as $ipInfoHandler) {
             try {
                 return $this->ipInfoModel = $ipInfoHandler->getInfo();
-            } catch ( \Exception $e ) {
-                if ( $this->logger ) {
+            } catch (\Exception $e) {
+                if ($this->logger) {
                     $this->logger->warning((string)$e);
                 } else {
                     trigger_error((string)$e, E_USER_WARNING);

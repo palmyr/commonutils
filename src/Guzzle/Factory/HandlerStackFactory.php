@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\Guzzle\Factory;
 
@@ -9,15 +11,13 @@ use Psr\Log\LoggerInterface;
 
 class HandlerStackFactory implements HandlerStackFactoryInterface
 {
-
     protected array $stack = [];
 
     protected ?LoggerInterface $logger;
 
     public function __construct(
         LoggerInterface $logger = null
-    )
-    {
+    ) {
         $this->logger = $logger;
     }
 
@@ -25,11 +25,11 @@ class HandlerStackFactory implements HandlerStackFactoryInterface
     {
         $handlerStack = HandlerStack::create();
 
-        foreach ( $this->stack as $handler ) {
+        foreach ($this->stack as $handler) {
             $handlerStack->push($handler);
         }
 
-        if ( isset($this->logger) ) {
+        if (isset($this->logger)) {
             $handlerStack->push(Middleware::log(
                 $this->logger,
                 new MessageFormatter()

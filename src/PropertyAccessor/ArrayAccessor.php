@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\PropertyAccessor;
 
 class ArrayAccessor implements ArrayAccessorInterface
 {
-
     public function hasValue(array $item, string $key): bool
     {
         return $this->hasNestedValue($item, $key);
@@ -27,17 +28,17 @@ class ArrayAccessor implements ArrayAccessorInterface
 
         list($currentKey, $nextKey) = $this->extractKey($key);
 
-        if ( !$this->has($item, $currentKey) ) {
+        if (!$this->has($item, $currentKey)) {
             return false;
         }
 
-        if ( is_null($nextKey) ) {
+        if (is_null($nextKey)) {
             return true;
         }
 
         $value = $this->get($item, $currentKey);
 
-        if ( !is_array($value) ) {
+        if (!is_array($value)) {
             return false;
         }
 
@@ -49,17 +50,17 @@ class ArrayAccessor implements ArrayAccessorInterface
 
         list($currentKey, $nextKey) = $this->extractKey($key);
 
-        if ( !$this->has($item, $currentKey) ) {
+        if (!$this->has($item, $currentKey)) {
             return null;
         }
 
         $value = $this->get($item, $currentKey);
 
-        if( is_null($nextKey) ) {
+        if(is_null($nextKey)) {
             return $value;
         }
 
-        if ( !is_array($value) ) {
+        if (!is_array($value)) {
             return null;
         }
 
@@ -73,23 +74,23 @@ class ArrayAccessor implements ArrayAccessorInterface
 
     protected function get(array $item, string $key): mixed
     {
-        return $this->has($item, $key) ? $item[$key]: null;
+        return $this->has($item, $key) ? $item[$key] : null;
     }
 
     protected function setNestedValue(array $item, string $key, mixed $value): array
     {
         list($currentKey, $nextKey) = $this->extractKey($key);
 
-        if ( is_null($nextKey) ) {
+        if (is_null($nextKey)) {
             $item[$currentKey] = $value;
             return $item;
         }
 
-        if ( !$this->has($item, $currentKey) ) {
+        if (!$this->has($item, $currentKey)) {
             $item[$currentKey] = [];
         }
 
-        if ( !is_array($item[$currentKey]) ) {
+        if (!is_array($item[$currentKey])) {
             $item[$currentKey] = [];
         }
 
@@ -106,7 +107,7 @@ class ArrayAccessor implements ArrayAccessorInterface
 
         $nextKey = null;
 
-        if (count($pieces) > 0 ) {
+        if (count($pieces) > 0) {
             $nextKey = implode(self::KEY_SEPARATOR, $pieces);
         }
 

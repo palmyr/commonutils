@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\IpInfo\IpInfoAccessor;
 
@@ -15,8 +17,7 @@ class IpInfoAccessor implements IpInfoAccessorInterface
 
     public function __construct(
         Client $client
-    )
-    {
+    ) {
         $this->client = $client;
     }
 
@@ -28,7 +29,7 @@ class IpInfoAccessor implements IpInfoAccessorInterface
 
         $errors = $this->getErrorsFromResponse($data);
 
-        if ( count($errors) > 0 ) {
+        if (count($errors) > 0) {
             throw new IpInfoException(sprintf("The data returned is invalid. [Errors: %s ]", json_encode($errors)));
         }
 
@@ -45,10 +46,10 @@ class IpInfoAccessor implements IpInfoAccessorInterface
     {
         $errors = [];
 
-        foreach ( ["ip"] as $item ) {
-            if ( !array_key_exists($item, $data) ) {
+        foreach (["ip"] as $item) {
+            if (!array_key_exists($item, $data)) {
                 $errors[$item][] = "Missing key";
-            } elseif ( empty($data[$item]) ) {
+            } elseif (empty($data[$item])) {
                 $errors[$item][] = "Value cannot be empty";
             }
         }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\IpInfo\IpInfoAccessor;
 
@@ -7,6 +9,5 @@ use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
 
 interface IpInfoAccessorInterface
 {
-
     public function getInfo(): IpInfoModelInterface;
 }

@@ -4,7 +4,6 @@ namespace Palmyr\CommonUtils\IpInfo\Model;
 
 class IpInfoModel implements IpInfoModelInterface
 {
-
     protected string $ip;
 
     protected string $city;
@@ -21,8 +20,7 @@ class IpInfoModel implements IpInfoModelInterface
         string $country,
         string $timezone,
         string $organization,
-    )
-    {
+    ) {
         $this->ip = $ip;
         $this->city = $city;
         $this->country = $country;

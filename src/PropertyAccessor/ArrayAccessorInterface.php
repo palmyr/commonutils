@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\PropertyAccessor;
 
 interface ArrayAccessorInterface
 {
-
     public const KEY_SEPARATOR = ".";
 
     public function getValue(array $item, string $key): mixed;

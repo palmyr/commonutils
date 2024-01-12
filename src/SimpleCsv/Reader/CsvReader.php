@@ -28,7 +28,7 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
     {
         $rows = [];
 
-        foreach ( $this->getIterator() as $row ) {
+        foreach ($this->getIterator() as $row) {
             $rows[] = $row;
         }
 
@@ -44,7 +44,7 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
     {
         parent::loadResource();
 
-        if ( !$this->headersLoaded() ) {
+        if (!$this->headersLoaded()) {
             $headers = $this->rawGet();
             $this->setHeaders($headers);
         }
@@ -57,7 +57,7 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
 
         $rowCount = count($row);
 
-        if ( $this->getHeadersCount() !== $rowCount ) {
+        if ($this->getHeadersCount() !== $rowCount) {
             throw new CsvException("the header count does not match");
         }
 
@@ -65,7 +65,7 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
 
         $mappedRows = [];
 
-        foreach ( $row as $key => $value ) {
+        foreach ($row as $key => $value) {
             $header = $headers[$key];
             $mappedRows[$header] = $value;
         }
@@ -75,7 +75,7 @@ class CsvReader extends AbstractSimpleCsv implements CsvReaderInterface
 
     private function rawGet(): ?array
     {
-        if ( $row = $this->getResource()->fgetcsv() ) {
+        if ($row = $this->getResource()->fgetcsv()) {
             return $row;
         }
         return null;

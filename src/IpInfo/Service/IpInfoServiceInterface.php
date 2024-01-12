@@ -8,6 +8,5 @@ use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
 
 interface IpInfoServiceInterface
 {
-
     public function getIpInfo(): IpInfoModelInterface;
 }
