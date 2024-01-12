@@ -32,10 +32,13 @@ class IpInfoServiceFactory implements IpInfoServiceFactoryInterface
         $this->clientFactory = $clientFactory;
         $this->logger = $logger;
 
-
+        $options = [
+            "connection_timeout" => 5,
+            "timeout" => 15,
+        ];
 
         $this->ipInfoAccessors = [
-            new IpInfoAccessor($this->clientFactory->createClient()),
+            new IpInfoAccessor($this->clientFactory->createClient($options)),
         ];
     }
 
