@@ -7,7 +7,7 @@ namespace Palmyr\CommonUtils\IpInfo\Service;
 use GuzzleHttp\Client;
 use Palmyr\CommonUtils\IpInfo\Exception\IpInfoException;
 use Palmyr\CommonUtils\IpInfo\IpInfoAccessor\IpInfoAccessorInterface;
-use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
+use Palmyr\CommonUtils\IpInfo\Dto\IpInfoDtoInterface;
 use Psr\Log\LoggerInterface;
 
 class IpInfoService implements IpInfoServiceInterface
@@ -17,7 +17,7 @@ class IpInfoService implements IpInfoServiceInterface
      */
     protected array $ipInfoHandlerCollection;
 
-    protected ?IpInfoModelInterface $ipInfoModel;
+    protected ?IpInfoDtoInterface $ipInfoModel;
 
     protected ?LoggerInterface $logger;
 
@@ -30,10 +30,10 @@ class IpInfoService implements IpInfoServiceInterface
     }
 
     /**
-     * @return IpInfoModelInterface
+     * @return IpInfoDtoInterface
      * @throws IpInfoException
      */
-    public function getIpInfo(): IpInfoModelInterface
+    public function getIpInfo(): IpInfoDtoInterface
     {
 
         if (isset($this->ipInfoModel)) {

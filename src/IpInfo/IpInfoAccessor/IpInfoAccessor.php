@@ -5,25 +5,27 @@ declare(strict_types=1);
 namespace Palmyr\CommonUtils\IpInfo\IpInfoAccessor;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Palmyr\CommonUtils\IpInfo\Exception\IpInfoException;
-use Palmyr\CommonUtils\IpInfo\Model\IpInfoModel;
-use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
-use Psr\Log\LoggerInterface;
+use Palmyr\CommonUtils\IpInfo\Dto\IpInfoDto;
+use Palmyr\CommonUtils\IpInfo\Dto\IpInfoDtoInterface;
 
 class IpInfoAccessor implements IpInfoAccessorInterface
 {
     protected Client $client;
 
+    protected string $url;
+
     public function __construct(
-        Client $client
+        Client $client,
+        string $url = "https://ipinfo.io/json"
     ) {
         $this->client = $client;
+        $this->url = $url;
     }
 
-    public function getInfo(): IpInfoModelInterface
+    public function getInfo(): IpInfoDtoInterface
     {
-        $response = $this->client->get("https://ipinfo.io/json");
+        $response = $this->client->get($this->url);
 
         $data = json_decode((string)$response->getBody(), true);
 
@@ -33,12 +35,14 @@ class IpInfoAccessor implements IpInfoAccessorInterface
             throw new IpInfoException(sprintf("The data returned is invalid. [Errors: %s ]", json_encode($errors)));
         }
 
-        return new IpInfoModel(
-            ip: $data["ip"],
-            city: $data["city"],
-            country: $data["country"],
-            timezone: $data["timezone"],
-            organization: $data["org"]
+        return new IpInfoDto(
+            ip: $data["ip"] ?? "",
+            city: $data["city"] ?? "",
+            country: $data["country"] ?? "",
+            region: $data["region"] ?? "",
+            timezone: $data["timezone"] ?? "",
+            organization: $data["org"] ?? "",
+            location: $data["loc"] ?? "",
         );
     }
 
@@ -46,7 +50,7 @@ class IpInfoAccessor implements IpInfoAccessorInterface
     {
         $errors = [];
 
-        foreach (["ip"] as $item) {
+        foreach (["ip", "city", "country", "region", "timezone", "org", "loc"] as $item) {
             if (!array_key_exists($item, $data)) {
                 $errors[$item][] = "Missing key";
             } elseif (empty($data[$item])) {

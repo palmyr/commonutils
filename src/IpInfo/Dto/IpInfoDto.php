@@ -1,8 +1,8 @@
 <?php
 
-namespace Palmyr\CommonUtils\IpInfo\Model;
+namespace Palmyr\CommonUtils\IpInfo\Dto;
 
-class IpInfoModel implements IpInfoModelInterface
+class IpInfoDto implements IpInfoDtoInterface
 {
     protected string $ip;
 
@@ -10,22 +10,30 @@ class IpInfoModel implements IpInfoModelInterface
 
     protected string $country;
 
+    protected string $region;
+
     protected string $timezone;
 
     protected string $organization;
+
+    protected string $location;
 
     public function __construct(
         string $ip,
         string $city,
         string $country,
+        string $region,
         string $timezone,
         string $organization,
+        string $location,
     ) {
         $this->ip = $ip;
         $this->city = $city;
         $this->country = $country;
+        $this->region = $region;
         $this->timezone = $timezone;
         $this->organization = $organization;
+        $this->location = $location;
     }
 
     public function getIp(): string
@@ -43,6 +51,11 @@ class IpInfoModel implements IpInfoModelInterface
         return $this->country;
     }
 
+    public function getRegion(): string
+    {
+        return $this->region;
+    }
+
     public function getTimezone(): string
     {
         return $this->timezone;
@@ -51,6 +64,11 @@ class IpInfoModel implements IpInfoModelInterface
     public function getOrganization(): string
     {
         return $this->organization;
+    }
+
+    public function getLocation(): string
+    {
+        return $this->location;
     }
 
 }

@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\IpInfo\IpInfoAccessor;
 
-use GuzzleHttp\Exception\GuzzleException;
-use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
+use Palmyr\CommonUtils\IpInfo\Dto\IpInfoDtoInterface;
+use Palmyr\CommonUtils\IpInfo\Exception\IpInfoException;
 
 interface IpInfoAccessorInterface
 {
-    public function getInfo(): IpInfoModelInterface;
+
+    /**
+     * @return IpInfoDtoInterface
+     * @throws IpInfoException
+     */
+    public function getInfo(): IpInfoDtoInterface;
 }

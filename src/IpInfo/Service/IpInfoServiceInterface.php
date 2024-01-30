@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Palmyr\CommonUtils\IpInfo\Service;
 
-use Palmyr\CommonUtils\IpInfo\Model\IpInfoModelInterface;
+use Palmyr\CommonUtils\IpInfo\Dto\IpInfoDtoInterface;
 
 interface IpInfoServiceInterface
 {
-    public function getIpInfo(): IpInfoModelInterface;
+    public function getIpInfo(): IpInfoDtoInterface;
 }
